@@ -9,8 +9,6 @@ halfHoursForWork = []
 for wf in weekMeetingsInHours:
    halfHoursForWork.append((8 - wf[1])*2)
 
-#print("halfHoursForWork (30m pieces)", halfHoursForWork)
-
 # Logging purposes only: ######
 logHours = []
 for p in halfHoursForWork:
@@ -44,15 +42,11 @@ for t in tasks:
    else:
        halfHoursToFill.append([t, equalPartsCount])
 
-#print ("Need to report for each task, in total (x 30min)", halfHoursToFill)
-
 # Logging purposes only:
 hoursToFill = copy.deepcopy(halfHoursToFill)
 for p in hoursToFill:
    p[1] = str(p[1]/2)+"h"
 print ("Need to report for each task, in total (hours)", hoursToFill)
-
-
 
 
 halfHoursToFillQueue = []
@@ -62,32 +56,20 @@ for hhtf in halfHoursToFill:
        halfHoursToFillQueue.append([hhtf[0], 1])
 
 
-#print ("halfHoursToFillQueue", halfHoursToFillQueue)
-
-#res = []
-#respos=0
-print ("\nReporing schedule, in minutes:")
+print ("\nReporing proposal, in minutes:")
 
 while halfHoursForWork.__len__()>0:
    dayInfo = weekMeetingsInHours.pop(0)[0]
 
    currentTimeSlot = halfHoursForWork.pop(0)
    filledslot = []
-   #print("currentTimeSlot = ", int(currentTimeSlot))
    for i in range (1, int(currentTimeSlot+1)):
        if halfHoursToFillQueue.__len__()>0:
            filledslot.append(halfHoursToFillQueue.pop(0)[0])
-   #print("Data for this slot:", filledslot)
-   #dd = ["Day", filledslot]
-   dd = [ [dayInfo, filledslot] ]
+   dayAndReportTime = [ [dayInfo, filledslot] ]
 
-   #print (dd)
-   for day, iss in dd:
-       #print (day, iss)
-       #print (iss)
-       #c = Counter(chain.from_iterable(iss))
+   for day, iss in dayAndReportTime:
        c = Counter(chain(iss))
        for k, v in c.items():
            print(day, "==>", k, str(v*30)+"m")
 
-       #res.append(filledslot)
