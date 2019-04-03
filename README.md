@@ -22,4 +22,13 @@ Reporing proposal, in minutes:
 14.Jan ==> JIRA-456 120m
 15.Jan ==> JIRA-456 450m
 16.Jan ==> JIRA-456 450m
+...
+...
+============ Grouped by JIRAs ==============
+JIRA-714 25.Mar, 300m | 26.Mar, 180m
+JIRA-287 6.Mar, 180m | 7.Mar, 300m | 12.Mar, 240m
+...
+...
+
 ```
+eof
